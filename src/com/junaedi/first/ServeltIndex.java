@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServeltOne
@@ -25,12 +26,21 @@ public class ServeltIndex extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    int[][] board;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session=request.getSession();  
 		int cols = Integer.parseInt(request.getParameter("cols"));
 		int rows = Integer.parseInt(request.getParameter("rows"));
-		request.setAttribute("cols", cols);
-		request.setAttribute("rows", rows);
-		request.setAttribute("game", 0);
+		session.setAttribute("cols", cols);
+		session.setAttribute("rows", rows);
+		board = new int[cols][rows];
+		for(int i=0;i<rows;i++) {
+			for(int j=0;j<cols;j++) {
+				board[i][j] = 0;
+			}
+		}
+		session.setAttribute("board", board);
+		session.setAttribute("player", 1);
 		request.getRequestDispatcher("gamepage.jsp").forward(request, response);
 	}
 

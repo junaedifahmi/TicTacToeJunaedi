@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="cols">How many Columns?:</label>
+    <label class="control-label col-sm-2" for="cols">How many Columns?</label>
     <div class="col-sm-10"> 
       <input type="number" max="12" min="3" class="form-control" name="cols" id="cols" placeholder="Columns Counts">
     </div>
