@@ -17,7 +17,6 @@ import com.junaedi.first.TTTConsoleNonOO2P;
 @WebServlet("/ServletGame")
 public class ServletGame extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static TTTConsoleNonOO2P game = new TTTConsoleNonOO2P();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,26 +30,11 @@ public class ServletGame extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if(request.getParameter("board") == null) {
-			int col = Integer.parseInt(request.getParameter("cols"));
-			int row = Integer.parseInt(request.getParameter("rows"));
-			game.initGame(col, row);
-		}
+		PrintWriter out = response.getWriter();
 		String pos = request.getParameter("position");
-		int player = game.getPlayer();
-		game.move(pos);
-		int[][] board = game.get_board();
-		request.setAttribute("board", board);
-		request.setAttribute("player", player);
-		request.setAttribute("currentState", game.getcurrentState());
-		request.getRequestDispatcher("gamepage.jsp").forward(request, response);
-		
-		
-//		PrintWriter out = response.getWriter();
-//		out.println(pos);
-//		
-		
-//		
+		out.println(pos);
+//		request.setAttribute("position", pos);
+//		request.getRequestDispatcher("gamepage.jsp").forward(request, response);
 	}
 
 	/**
